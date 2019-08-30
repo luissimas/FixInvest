@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Fix Invest</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <script type="text/javascript">
+
+            function validarLogin() {
+                var log = "";
+                try {
+                    log = document.getElementById("idLog").value.toString().trim();
+
+                    if (log === "") {
+                        document.getElementById("idNome").value = "";
+                        document.getElementById("idNome").focus();
+
+                        alert("É necessário colocar o nome");
+                    } else
+                        validNome = true;
+                } catch (erro) {
+                    alert(erro);
+                }
+            }
+
+            function validarSenha() {
+                var senha = "";
+
+                try {
+                    senha = document.getElementById("idSenha").value.toString().trim();
+
+                    if (senha.length <= 3) {
+
+                        document.getElementById("idSenha").value = "";
+                        document.getElementById("idSenha").focus();
+
+                        alert("Senha precisa ter mais que 3 caracteres");
+
+                    }
+                } catch (erro) {
+                    alert(erro);
+                }
+            }
+
+            function ConfirmarBotao() {
+                validarLogin();
+                validarSenha();
+
+                if (!((validNome) && (validEmail) && (validSenha)))
+                {
+                    alert("É necessário preencher todos os campos.");
+                    return false;
+                } else
+                    return true;
+            }
+        </script>
+
+    </head>
+    <body>
+        <div align="center">
+            <form action="SControlador" method="post" onsubmit="return ConfirmarBotao()">
+
+                Email:<input type="text" name="txtEmail" id="idLog" onblur="validarLogin()"/>
+                <br/>
+                Senha:<input type="password" name="txtSenha" id="idSenha" onBlur="validarSenha()"/><br/>
+                
+                
+                <input type="radio" name="Tipo" value="Estudante" checked=""/> Estudante
+                <input type="radio" name="Tipo" value="Escritor" /> Escritor<br/>
+                
+                <input type="submit" name="btnEnviar" value="Novo Cadastro" />
+                <input type="submit" name="btnEnviar" value="Login" />
+
+            </form>
+        </div>
+    </body>
+</html>

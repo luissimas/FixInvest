@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Cadastre-se</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <script type="text/javascript">
+
+            var validNome = false; //new Boolean(false);
+            var validSenha = false;//new Boolean(false);
+
+            function validarNome() {
+                var nome = "";
+
+                try {
+                    nome = document.getElementById("idNome").value.toString().trim();
+
+                    if (nome === "") {
+                        document.getElementById("idNome").value = "";
+                        document.getElementById("idNome").focus();
+
+                        alert("É necessário colocar o nome");
+                        validNome = false;
+                    } else
+                        validNome = true;
+                } catch (erro) {
+                    alert(erro);
+                    validNome = false;
+                }
+            }
+
+            function validarSenha() {
+
+                var senha = "";
+                var auxSenha = "";
+
+                try {
+                    senha = document.getElementById("idSenha").value.toString().trim();
+                    auxSenha = document.getElementById("idSenha2").value.toString().trim();
+
+                    //if(senha.localeCompare())
+                    if ((senha.length <= 3) || (auxSenha.toString().localeCompare(senha.toString()) != 0)) {
+
+                        document.getElementById("idSenha").value = "";
+                        document.getElementById("idSenha2").value = "";
+                        document.getElementById("idSenha").focus();
+
+                        alert("Senhas não coincidem");
+                        validSenha = false;
+                    } else
+                        validSenha = true;
+                } catch (erro) {
+                    alert(erro);
+                    validSenha = false;
+                }
+            }
+
+            function ConfirmarBotao() {
+                validarNome();
+                validarSenha();
+
+                if (!((validNome) && (validSenha)))
+                {
+                    alert("É necessário preencher todos os campos.");
+                    return false;
+                } else
+                    return true;
+            }
+        </script>
+    </head>
+    <body>
+        <div align="center">
+            <form action="SControlador" method="post">
+
+                Nome: <input type="text" name="txtNome" id="idNome" onblur="validarNome()"/><br/>
+                E-mail: <input type="email" name="txtEmail" id="idEmail"/><br/>
+                Data de Nascimento: <input type="date" name="dtpDataNasc" id="idDataNasc"/><br/>
+                Senha:<input type="password" name="txtSenha" id="idSenha"/><br/>
+                Confirmação de Senha:<input type="password" name="txtSenha2" id="idSenha2" onBlur="validarSenha()"/><br/>
+
+                <input type="radio" name="Tipo" value="Estudante" /> Estudante
+                <input type="radio" name="Tipo" value="Escritor" /> Escritor
+
+                <input type="submit" name="btnEnviar" value="Cadastrar"/>
+
+            </form>
+        </div>
+    </body>
+</html>
