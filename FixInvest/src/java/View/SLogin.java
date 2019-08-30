@@ -54,7 +54,7 @@ public class SLogin extends HttpServlet {
                     sessao.setAttribute("estudante", estudante);
                     sessao.setMaxInactiveInterval(1200); //Tempo limite da sessão: 20min
 
-                    response.sendRedirect("home.html");
+                    response.sendRedirect("home.jsp");
                 } else {
                     out.println("<!DOCTYPE html>");
                     out.println("<html>");
@@ -94,7 +94,7 @@ public class SLogin extends HttpServlet {
                     sessao.setAttribute("escritor", escritor);
                     sessao.setMaxInactiveInterval(1200); //Tempo limite da sessão: 20min
 
-                    response.sendRedirect("home.html");
+                    response.sendRedirect("home.jsp");
                 } else {
                     out.println("<!DOCTYPE html>");
                     out.println("<html>");
