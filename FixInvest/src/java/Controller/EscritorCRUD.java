@@ -8,6 +8,7 @@ package Controller;
 import Model.Banco;
 import Model.Escritor;
 import java.sql.Date;
+import java.sql.ResultSet;
 
 public class EscritorCRUD {
 
@@ -57,6 +58,23 @@ public class EscritorCRUD {
             return (escritor);
         } catch (Exception ex) {
             throw new Exception("Erro ao efetuar o login:" + ex.getMessage());
+        }
+    }
+    
+    public ResultSet listarCodigo(int codigo) throws Exception {
+        Banco banco = new Banco();
+
+        try {
+            banco.comando = Banco.conexao.prepareStatement("select codigo, nome, email, datanasc from Escritor where codigo = ?");
+                banco.comando.setInt(1, codigo);
+            
+            banco.tabela = banco.comando.executeQuery();
+
+            Banco.conexao.close();
+
+            return (banco.tabela);
+        } catch (Exception ex) {
+            throw new Exception("Erro ao listar artigos: " + ex.getMessage());
         }
     }
 }

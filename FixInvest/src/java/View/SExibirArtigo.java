@@ -3,10 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package View;
 
+import Controller.ArtigoCRUD;
+import Controller.EscritorCRUD;
+import Model.Artigo;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,10 +19,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author aluno
+ * @author Padawan
  */
-@WebServlet(name = "SControlador", urlPatterns = {"/SControlador"})
-public class SControlador extends HttpServlet {
+@WebServlet(name = "SExibirArtigo", urlPatterns = {"/SExibirArtigo"})
+public class SExibirArtigo extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,28 +38,41 @@ public class SControlador extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
+        Artigo artigo = new Artigo();
+        ArtigoCRUD artigoCRUD = new ArtigoCRUD();
+        EscritorCRUD escritorCRUD = new EscritorCRUD();
+        ResultSet tabela;
 
         try {
-            //Redireciona os dados recebidos para o servlet se baseando no texto do botão
-            if (request.getParameter("btnEnviar").trim().equalsIgnoreCase("Login")) {
-                request.getRequestDispatcher("SLogin").forward(request, response);
-            } else if (request.getParameter("btnEnviar").trim().equalsIgnoreCase("Cadastrar")) {
-                request.getRequestDispatcher("SCadastrar").forward(request, response);
-            } else if (request.getParameter("btnEnviar").trim().equalsIgnoreCase("Enviar arquivo")) {
-                request.getRequestDispatcher("SCadastrarArtigos").forward(request, response);
-            } else if (request.getParameter("btnEnviar").trim().equalsIgnoreCase("Ver artigo")) {
-                request.getRequestDispatcher("SExibirArtigo").forward(request, response);
-            } else {
-                out.println("<!DOCTYPE html>");
-                out.println("<html>");
-                out.println("<head>");
-                out.println("<title>Erro</title>");
-                out.println("</head>");
-                out.println("<body>");
-                out.println("<h1>Evento não tratado: " + request.getParameter("btnEnviar").trim() + "</h1>");
-                out.println("</body>");
-                out.println("</html>");
-            }
+            tabela = artigoCRUD.listarCodigo(Integer.parseInt(request.getParameter("txtCodigo")));
+            tabela.next();
+
+            artigo.setCodigo(tabela.getInt(1));
+            artigo.setCategoria(tabela.getString(2));
+            artigo.setTitulo(tabela.getString(3));
+            artigo.setTexto(tabela.getString(4));
+            artigo.setData(tabela.getDate(5).toString());
+            artigo.setCodEscritor(tabela.getInt(6));
+
+            tabela = escritorCRUD.listarCodigo(artigo.getCodEscritor());
+            tabela.next();
+
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>" + artigo.getTitulo() + "</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<div align='center'>");
+
+            out.println("<h1>" + artigo.getTitulo() + "</h1></br>");
+            out.println("<h4>" + tabela.getString(2) + "; Data de publicação: " + artigo.getData() + "</h4></br>");
+            out.println(artigo.getTexto());
+
+            out.println("</div>");
+            out.println("</body>");
+            out.println("</html>");
+
         } catch (Exception ex) {
             out.println("<!DOCTYPE html>");
             out.println("<html>");

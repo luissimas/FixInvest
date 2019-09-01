@@ -7,13 +7,14 @@ package Controller;
 
 import Model.Artigo;
 import Model.Banco;
+import java.sql.ResultSet;
 
 /**
  *
  * @author Padawan
  */
 public class ArtigoCRUD {
-    
+
     public int gravar(Artigo artigo) throws Exception {
         Banco banco = new Banco();
         int linhasAfetadas = 0;
@@ -35,5 +36,43 @@ public class ArtigoCRUD {
             throw new Exception("Erro ao gravar artigo:" + ex.getMessage());
         }
     }
+
+    public ResultSet listar(String categoria) throws Exception {
+        Banco banco = new Banco();
+
+        try {
+            if(categoria.trim().length()>1){
+                banco.comando = Banco.conexao.prepareStatement("select codigo, categoria, titulo, texto, data, codEscritor from Artigo where categoria ilike ?");
+                banco.comando.setString(1, categoria);
+            }else{
+                banco.comando = Banco.conexao.prepareStatement("select codigo, categoria, titulo, texto, data, codEscritor from Artigo");
+            }
+            
+            banco.tabela = banco.comando.executeQuery();
+
+            Banco.conexao.close();
+
+            return (banco.tabela);
+        } catch (Exception ex) {
+            throw new Exception("Erro ao listar artigos: " + ex.getMessage());
+        }
+    }
     
+    public ResultSet listarCodigo(int codigo) throws Exception {
+        Banco banco = new Banco();
+
+        try {
+            banco.comando = Banco.conexao.prepareStatement("select codigo, categoria, titulo, texto, data, codEscritor from Artigo where codigo = ?");
+                banco.comando.setInt(1, codigo);
+            
+            banco.tabela = banco.comando.executeQuery();
+
+            Banco.conexao.close();
+
+            return (banco.tabela);
+        } catch (Exception ex) {
+            throw new Exception("Erro ao listar artigos: " + ex.getMessage());
+        }
+    }
+
 }
