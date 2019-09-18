@@ -33,12 +33,32 @@ public class EstudanteCRUD {
         }
     }
     
+    public int gravarPerfil(Estudante estudante) throws Exception {
+        Banco banco = new Banco();
+        int linhasAfetadas = 0;
+
+        try {
+            banco.comando = Banco.conexao.prepareStatement("update estudante set perfil=? where codigo = ?");
+
+            banco.comando.setString(1, estudante.getPerfil());
+            banco.comando.setInt(2, estudante.getCodigo());
+
+            linhasAfetadas = banco.comando.executeUpdate();
+
+            Banco.conexao.close();
+
+            return (linhasAfetadas);
+        } catch (Exception ex) {
+            throw new Exception("Erro ao gravar estudante:" + ex.getMessage());
+        }
+    }
+    
     public Estudante login(String email, String senha) throws Exception {
         Banco banco = new Banco();
         Estudante estudante = null;
 
         try {
-            banco.comando = Banco.conexao.prepareStatement("select codigo,nome,email,senha,datanasc from estudante where email=? and senha=?");
+            banco.comando = Banco.conexao.prepareStatement("select codigo,nome,email,senha,datanasc,escola,perfil from estudante where email=? and senha=?");
             
             banco.comando.setString(1, email);
             banco.comando.setString(2, senha);
@@ -50,6 +70,18 @@ public class EstudanteCRUD {
                 estudante.setNome(banco.tabela.getString(2));
                 estudante.setEmail(banco.tabela.getString(3));
                 estudante.setSenha(banco.tabela.getString(4));
+                
+                if(banco.tabela.getString(5) != null){
+                    estudante.setDataNasc(banco.tabela.getString(5));
+                }
+                
+                if(banco.tabela.getString(6) != null){
+                    estudante.setEscola(banco.tabela.getString(6));
+                }
+                
+                if(banco.tabela.getString(7) != null){
+                    estudante.setPerfil(banco.tabela.getString(7));
+                }
             }
             
             Banco.conexao.close();

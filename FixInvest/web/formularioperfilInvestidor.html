@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Perfil de investidor</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div align="center">
+            <h1>Teste de perfil de investidor</h1>
+            <br>
+            <form action="SControlador">
+                <h4>Qual a sua experiência no mercado financeiro?</h4>
+                <select name="cmbExperiencia">
+                    <option value="1">NÃO TENHO FORMAÇÃO ACADÊMICA, NEM EXPERIÊNCIA NO MERCADO FINANCEIRO</option>
+                    <option value="2">TENHO FORMAÇÃO ACADÊMICA NA ÁREA FINANCEIRA, MAS NÃO TENHO EXPERIÊNCIA PROFISSIONAL</option>
+                    <option value="3">NÃO TENHO FORMAÇÃO ACADÊMICA, MAS POSSUO EXPERIÊNCIA PROFISSIONAL NA ÁREA FINANCEIRA</option>
+                    <option value="4">TENHO FORMAÇÃO ACADÊMICA E EXPERIÊNCIA PROFISSIONAL NA ÁREA FINANCEIRA</option>
+                </select>
+                <br>
+                <h4>Quando pretende resgatar o seu investimento?</h4>
+                <select name="cmbPretendeResgatar">
+                    <option value="1">MAIOR PARTE EM ATÉ 1 ANO, PARA EMERGÊNCIAS OU GASTOS EVENTUAIS</option>
+                    <option value="2">EM ATÉ 3 ANOS, PARA FORMAR PATRIMÔNIO OU  OBJETIVOS ESPECÍFICOS</option>
+                    <option value="3">MAIS DE 3 ANOS, PARA MINHA APOSENTADORIA</option>
+                    <option value="4">NÃO POSSUO PLANOS PARA RESGATE</option>
+                </select>
+                <br>
+                <h4>Qual a sua tolerância a perdas do valor investido?</h4>
+                <select name="cmbToleranciaAPerdas">
+                    <option value="1">QUALQUER PERDA ME DEIXA DESCONFORTÁVEL</option>
+                    <option value="2">ATÉ 10% NO CURTO OU MÉDIO PRAZO</option>
+                    <option value="3">ENTRE 10% E 20% NO CURTO OU MÉDIO PRAZO</option>
+                    <option value="4">ACIMA DE 20% NO CURTO OU MÉDIO PRAZO</option>
+                </select>
+                <br>
+                <h4>Em quais dos produtos abaixo você já investiu?</h4>
+                <input type="checkbox" name="chkJaInvestiu" value="Poupança" /> Poupança
+                <input type="checkbox" name="chkJaInvestiu" value="Renda Fixa" /> Renda Fixa
+                <input type="checkbox" name="chkJaInvestiu" value="Renda Variável" /> Renda Variável
+                <input type="checkbox" name="chkJaInvestiu" value="Fundos" /> Fundos
+                <br>
+                <h4>Nos últimos 12 meses, com que frequência você investiu?</h4>
+                <select name="cmbFrequenciaQueInvestiu">
+                    <option value="1">ATÉ 20% DA RENDA, FAZENDO ATÉ 12 APLICAÇÕES</option>
+                    <option value="2">ATÉ 20%  DA RENDA, FAZENDO MAIS DE 12 APLICAÇÕES</option>
+                    <option value="3">ACIMA DE 20%  DA RENDA, FAZENDO ATÉ 12 APLICAÇÕES</option>
+                    <option value="4">ACIMA DE 20% DA RENDA, FAZENDO MAIS DE 12 APLICAÇÕES</option>
+                </select>
+                <br>
+                <h4>Em que momento da sua vida financeira você se encontra?</h4>
+                <select name="cmbVidaFinanceira">
+                    <option value="1">PRECISO DAS MINHAS RECEITAS E RENDIMENTOS PARA SUPORTAR DESPESAS</option>
+                    <option value="2">ESTOU INICIANDO A CONSTRUÇÃO DO MEU PATRIMÔNIO</option>
+                    <option value="3">JÁ CONSTRUÍ MEU PATRIMÔNIO, MAS TENHO DESPESAS ELEVADAS</option>
+                    <option value="4">JÁ TENHO PATRIMÔNIO CONSOLIDADO</option>
+                </select>
+                <br>
+                
+                <br>
+                <input type="submit" name="btnEnviar" value="Gerar Perfil"/>
+            </form>
+        </div>
+    </body>
+</html>

@@ -5,6 +5,7 @@
 --%>
 
 <%@page import="Model.Escritor"%>
+<%@page import="Model.Estudante"%>
 <%@page import="javax.servlet.http.HttpSession;"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -15,6 +16,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
+        <div align="left">
+            <%
+                HttpSession sessao = request.getSession();
+                
+                if(((Estudante) sessao.getAttribute("estudante")) != null){
+                    out.println("<a href='perfilinvestidor.jsp'>Perfil de Investidor</a>");
+                }
+            %>
+        </div>
         <div align="right">
             <form action="SListarArtigos" method="post">
                 <input type="submit" name="btnEnviar" value="Investimentos"/>
@@ -23,9 +33,7 @@
         </div>
         <div align="center">
             <h1>Em breve...</h1>
-            <%
-                HttpSession sessao = request.getSession();
-                
+            <%                
                 if(((Escritor) sessao.getAttribute("escritor")) != null){
                     out.println("<a href='incluirArtigos.html'>Incluir artigos</a>");
                 }

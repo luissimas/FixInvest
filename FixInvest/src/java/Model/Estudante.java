@@ -19,6 +19,8 @@ public class Estudante {
     private String nome;
     private String email;
     private String senha;
+    private String escola;
+    private String perfil;
     private Date dataNasc;
 
     public int getCodigo() {
@@ -35,6 +37,14 @@ public class Estudante {
 
     public String getSenha() {
         return senha;
+    }
+    
+    public String getEscola(){
+        return escola;
+    }
+    
+    public String getPerfil(){
+        return perfil;
     }
 
     public Date getDataNasc() {
@@ -55,6 +65,14 @@ public class Estudante {
 
     public void setSenha(String senhaRecebida) {
         senha = senhaRecebida;
+    }
+    
+    public void setEscola(String escolaRecebida){
+        escola = escolaRecebida;
+    }
+    
+    public void setPerfil(String perfilRecebido){
+        perfil = perfilRecebido;
     }
 
     public void setDataNasc(String dataNascRecebida) throws ParseException {
