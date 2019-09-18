@@ -51,6 +51,8 @@ public class SLogin extends HttpServlet {
 
                 if (estudante != null) {
                     sessao = request.getSession(true);
+                    sessao.removeAttribute("estudante");
+                    sessao.removeAttribute("escritor");
                     sessao.setAttribute("estudante", estudante);
                     sessao.setMaxInactiveInterval(1200); //Tempo limite da sessão: 20min
 
@@ -91,6 +93,8 @@ public class SLogin extends HttpServlet {
 
                 if (escritor != null) {
                     sessao = request.getSession(true);
+                    sessao.removeAttribute("estudante");
+                    sessao.removeAttribute("escritor");
                     sessao.setAttribute("escritor", escritor);
                     sessao.setMaxInactiveInterval(1200); //Tempo limite da sessão: 20min
 

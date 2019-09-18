@@ -32,6 +32,7 @@ create table Estudante(
 	email varchar(40), 
 	datanasc date not null,
 	escola varchar(40),
+	perfil varchar(40),
 	constraint ca01 unique(nome,senha),
 	constraint ca02 unique(email));
 		
