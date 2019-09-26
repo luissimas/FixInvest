@@ -47,7 +47,9 @@ public class SControlador extends HttpServlet {
                 request.getRequestDispatcher("SExibirArtigo").forward(request, response);
             } else if (request.getParameter("btnEnviar").trim().equalsIgnoreCase("Gerar Perfil")) {
                 request.getRequestDispatcher("SPerfilInvestidor").forward(request, response);
-            } else {
+            }else if (request.getParameter("btnEnviar").trim().equalsIgnoreCase("Entrar")) {
+                response.sendRedirect("login.html");
+            }else {
                 out.println("<!DOCTYPE html>");
                 out.println("<html>");
                 out.println("<head>");
