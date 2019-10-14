@@ -94,7 +94,6 @@
             </select>
             </br>
             Depósito inicial: <input type="text" name="txtDepositoInicial" id="idDepositoInicial" value="0" onchange="calcular()"/></br>
-            Depósito mensal: <input type="text" name="txtDepositoMensal" id="idDepositoMensal" value="0" onchange="calcular()"/></br>
             Tempo investido: <input type="text" name="txtTempoInvestido" id="idTempoInvestido" value="0" onchange="calcular()"/></br>
             Rentabilidade: <input type="text" name="txtRentabilidade" id="idRentabilidade" value="0" readonly="true"/>% a.a</br>
             Valor bruto: <input type="text" name="txtValorFinalBruto" id="idValorFinalBruto" value="0" readonly="true"/></br>
