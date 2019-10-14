@@ -22,7 +22,6 @@ create table Escritor(
 	senha varchar(30) not null,
 	email varchar(40), 
 	datanasc date not null,
-	constraint ce01 unique(nome,senha),
 	constraint ce02 unique(email));
                                                       
 create table Estudante(
@@ -33,7 +32,6 @@ create table Estudante(
 	datanasc date not null,
 	escola varchar(40),
 	perfil varchar(40),
-	constraint ca01 unique(nome,senha),
 	constraint ca02 unique(email));
 		
 create table Artigo(
@@ -43,10 +41,16 @@ create table Artigo(
 	categoria varchar(20)not null,
 	titulo varchar(50)not null,
 	texto text not null);
+	
+create table Investimento(
+	codigo serial primary key,
+	descr varchar(50),
+	rendimento real);
 
 select * from Escritor;
 select * from Estudante;
 select * from Artigo;
+select * from Investimento;
  */
 
 public class Banco {

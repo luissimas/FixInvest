@@ -22,7 +22,8 @@
         <div align="left">
             <%
                 if(((Estudante) sessao.getAttribute("estudante")) != null){
-                    out.println("<a href='perfilinvestidor.jsp'>Perfil de Investidor</a>");
+                    out.println("<a href='perfilinvestidor.jsp'>Perfil de Investidor</a></br>");
+                    out.println("<a href='calculadora.jsp'>Calculadora</a>");
                 }
             %>
         </div>
