@@ -45,7 +45,7 @@ create table Artigo(
 create table Investimento(
 	codigo serial primary key,
 	descr varchar(50),
-	rendimento real);
+	rentabilidade real);
 
 select * from Escritor;
 select * from Estudante;

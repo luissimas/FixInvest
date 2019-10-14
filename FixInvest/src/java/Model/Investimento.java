@@ -13,7 +13,7 @@ public class Investimento {
 
     private int codigo;
     private String descr;
-    private Double rendimento;
+    private Double rentabilidade;
 
     public int getCodigo() {
         return codigo;
@@ -23,8 +23,8 @@ public class Investimento {
         return descr;
     }
     
-    public Double getRendimento() {
-        return rendimento;
+    public Double getRentabilidade() {
+        return rentabilidade;
     }
 
     public void setCodigo(int codigoRecebido) {
@@ -40,10 +40,10 @@ public class Investimento {
     }
     
     public void setRendimento(Double rendimentoRecebido) {
-        rendimento = rendimentoRecebido;
+        rentabilidade = rendimentoRecebido;
     }
     
     public void setRendimento(String rendimentoRecebido) {
-        rendimento = Double.parseDouble(rendimentoRecebido);
+        rentabilidade = Double.parseDouble(rendimentoRecebido);
     }
 }

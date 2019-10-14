@@ -44,13 +44,39 @@
                                     investimento = eval('(' + ajax.responseText + ')');
                                 }
 
-                                document.getElementById('idRendimento').value = investimento.rendimento;
-
+                                document.getElementById('idRentabilidade').value = investimento.rentabilidade;
+                                        
+                                calcular();
                             }
                         }
                     };
                 }
                 ajax.send(null);
+            }
+            
+            function calcular(){
+                var depositoInicial = parseFloat(document.getElementById('idDepositoInicial').value);
+                var tempoInvestido = parseInt(document.getElementById('idTempoInvestido').value);
+                var rentabilidade = parseFloat(document.getElementById('idRentabilidade').value / 100);
+                var rendimentoBruto = 0.0;
+                var rendimentoLiquido = 0.0;
+                var ir = 0.0;
+                
+                if(tempoInvestido < 6){
+                    ir = 0.225;
+                }else if((tempoInvestido <= 12) || (tempoInvestido >= 6)){
+                    ir = 0.2;
+                }else if((tempoInvestido < 12) || (tempoInvestido >= 24)){
+                    ir = 0.175;
+                }else if(tempoInvestido > 24){
+                    ir = 0.15;
+                }
+                
+                rendimentoBruto = depositoInicial * (rentabilidade * (tempoInvestido / 12));
+                rendimentoLiquido = rendimentoBruto - (rendimentoBruto * ir);
+                
+                document.getElementById('idValorFinalBruto').value = depositoInicial + rendimentoBruto;
+                document.getElementById('idValorFinalLiquido').value = depositoInicial + rendimentoLiquido;
             }
         </script>
     </head>
@@ -67,10 +93,13 @@
                 %>
             </select>
             </br>
-            Depósito inicial: <input type="text" name="txtDepositoInicial" id="idDepositoInicial" value="0"/></br>
-            Depósito mensal: <input type="text" name="txtDepositoMensal" id="idDepositoMensal" value="0"/></br>
-            Tempo investido: <input type="text" name="txtTempoInvestido" id="idTempoInvestido" value="0"/></br>
-            Rendimento: <input type="text" name="txtRendimento" id="idRendimento" value="0" readonly="true"/></br>
+            Depósito inicial: <input type="text" name="txtDepositoInicial" id="idDepositoInicial" value="0" onchange="calcular()"/></br>
+            Depósito mensal: <input type="text" name="txtDepositoMensal" id="idDepositoMensal" value="0" onchange="calcular()"/></br>
+            Tempo investido: <input type="text" name="txtTempoInvestido" id="idTempoInvestido" value="0" onchange="calcular()"/></br>
+            Rentabilidade: <input type="text" name="txtRentabilidade" id="idRentabilidade" value="0" readonly="true"/>% a.a</br>
+            Valor bruto: <input type="text" name="txtValorFinalBruto" id="idValorFinalBruto" value="0" readonly="true"/></br>
+            Valor líquido: <input type="text" name="txtValorFinalLiquido" id="idValorFinalLiquido" value="0" readonly="true"/></br>
+            O valor líquido é o valor final do investimento, ou seja, descontado o imposto de renda.
         </div>
     </body>
 </html>

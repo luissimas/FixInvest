@@ -52,7 +52,7 @@ public class SCalculadora extends HttpServlet {
             if (tabela.next()) {
                 json.put("codigo", tabela.getInt(1));
                 json.put("descr", tabela.getString(2));
-                json.put("rendimento", tabela.getDouble(3));
+                json.put("rentabilidade", tabela.getDouble(3));
             }
             
             out.print(json.toJSONString());

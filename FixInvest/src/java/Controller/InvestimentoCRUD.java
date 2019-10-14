@@ -19,7 +19,7 @@ public class InvestimentoCRUD {
         Banco banco = new Banco();
 
         try {
-            banco.comando = Banco.conexao.prepareStatement("select codigo, descr, rendimento from investimento");
+            banco.comando = Banco.conexao.prepareStatement("select codigo, descr, rentabilidade from investimento");
 
             banco.tabela = banco.comando.executeQuery();
 
@@ -27,7 +27,7 @@ public class InvestimentoCRUD {
 
             return (banco.tabela);
         } catch (Exception ex) {
-            throw new Exception("Erro ao listar artigos: " + ex.getMessage());
+            throw new Exception("Erro ao listar investimentos: " + ex.getMessage());
         }
     }
 
@@ -35,7 +35,7 @@ public class InvestimentoCRUD {
         Banco banco = new Banco();
 
         try {
-            banco.comando = Banco.conexao.prepareStatement("select codigo, descr, rendimento from investimento where codigo = ?");
+            banco.comando = Banco.conexao.prepareStatement("select codigo, descr, rentabilidade from investimento where codigo = ?");
             banco.comando.setInt(1, codigo);
 
             banco.tabela = banco.comando.executeQuery();
@@ -44,7 +44,7 @@ public class InvestimentoCRUD {
 
             return (banco.tabela);
         } catch (Exception ex) {
-            throw new Exception("Erro ao listar artigos: " + ex.getMessage());
+            throw new Exception("Erro ao listar investimento: " + ex.getMessage());
         }
     }
 
